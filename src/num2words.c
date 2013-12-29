@@ -2,65 +2,65 @@
 #include "string.h"
 
 static const char* const ONES[] = {
-  "cero",
-  "una",
-  "dos",
-  "tres",
-  "cuatro",
-  "cinco",
-  "seis",
-  "siete",
-  "ocho",
-  "nueve"
+  "cero\n",
+  "una\n",
+  "dos\n",
+  "tres\n",
+  "cuatro\n",
+  "cinco\n",
+  "seis\n",
+  "siete\n",
+  "ocho\n",
+  "nueve\n"
 };
 
 static const char* const TEENS[] ={
-  "diez",
-  "once",
-  "doce",
-  "trece",
-  "catorce",
-  "quince",
-  "dieciséis",
-  "diecisiete",
-  "dieciocho",
-  "diecinueve"
+  "diez\n",
+  "once\n",
+  "doce\n",
+  "trece\n",
+  "catorce\n",
+  "quince\n",
+  "dieci\nséis",
+  "dieci\nsiete",
+  "dieci\nocho",
+  "dieci\nnueve"
 };
 
 static const char* const TENS[] = {
   "",
-  "diez",
-  "veinte",
-  "treinta",
-  "cuarenta",
-  "cincuenta",
-  "sesenta",
-  "setenta",
-  "ochenta",
-  "noventa"
+  "diez\n",
+  "veinte\n",
+  "treinta\n",
+  "cuarenta\n",
+  "cincuenta\n",
+  "sesenta\n",
+  "setenta\n",
+  "ochenta\n",
+  "noventa\n"
 };
 
 static const char* const TENSPLUS[] = {
   "",
-  "dieci",
-  "veinti",
-  "treinta y ",
-  "cuarenta y ",
-  "cincuenta y ",
-  "sesenta y ",
-  "setenta y ",
-  "ochenta y ",
-  "noventa y "
+  "dieci\n",
+  "veinti\n",
+  "treinta\ny\n",
+  "cuarenta\ny\n",
+  "cincuenta\ny\n",
+  "sesenta\ny\n",
+  "setenta\ny\n",
+  "ochenta\ny\n",
+  "noventa\ny\n"
 };
 
-static const char* STR_OH_CLOCK = "en punto";
-static const char* STR_NOON = "mediodía";
-static const char* STR_MIDNIGHT = "medianoche";
-static const char* STR_QUARTER = "cuarto";
-static const char* STR_TO = "menos";
-static const char* STR_PAST = "y";
-static const char* STR_HALF = "media";
-static const char* STR_AFTER = "y";
+static const char* STR_OH_CLOCK = "\nen\npunto";
+static const char* STR_NOON = "medio\ndía";
+static const char* STR_MIDNIGHT = "media\nnoche";
+static const char* STR_QUARTER = "cuarto\n";
+static const char* STR_TO = "menos\n";
+static const char* STR_PAST = "y\n";
+static const char* STR_HALF = "media\n";
+static const char* STR_AFTER = "y\n";
 
 static size_t append_number(char* words, int num) {
   int tens_val = num / 10 % 10;
@@ -131,36 +131,36 @@ void fuzzy_time_to_words(int hours, int minutes, char* words, size_t length) {
 
   if (fuzzy_minutes != 0 && (fuzzy_minutes >= 10 || fuzzy_minutes == 5 || fuzzy_hours == 0 || fuzzy_hours == 12)) {
     if (fuzzy_minutes == 15) {
-       remaining -= append_string(words, remaining, " ");      
+       //remaining -= append_string(words, remaining, " ");      
        remaining -= append_string(words, remaining, STR_AFTER);
-       remaining -= append_string(words, remaining, " ");
+       //remaining -= append_string(words, remaining, " ");
        remaining -= append_string(words, remaining, STR_QUARTER);      
     } else if (fuzzy_minutes == 45) {
-       remaining -= append_string(words, remaining, " ");      
+       //remaining -= append_string(words, remaining, " ");      
        remaining -= append_string(words, remaining, STR_TO);
-       remaining -= append_string(words, remaining, " ");
+       //remaining -= append_string(words, remaining, " ");
        remaining -= append_string(words, remaining, STR_QUARTER);
     } else if (fuzzy_minutes == 30) {
-      remaining -= append_string(words, remaining, " ");
+      //remaining -= append_string(words, remaining, " ");
       remaining -= append_string(words, remaining, STR_PAST);
-      remaining -= append_string(words, remaining, " ");
+      //remaining -= append_string(words, remaining, " ");
       remaining -= append_string(words, remaining, STR_HALF);
     } else if (fuzzy_minutes < 30) {
-      remaining -= append_string(words, remaining, " ");
+      //remaining -= append_string(words, remaining, " ");
       remaining -= append_string(words, remaining, STR_AFTER);
-      remaining -= append_string(words, remaining, " ");
+      //remaining -= append_string(words, remaining, " ");
       remaining -= append_number(words, fuzzy_minutes);
     } else {
-      remaining -= append_string(words, remaining, " ");
+      //remaining -= append_string(words, remaining, " ");
       remaining -= append_string(words, remaining, STR_TO);
-      remaining -= append_string(words, remaining, " ");
+      //remaining -= append_string(words, remaining, " ");
       remaining -= append_number(words, 60 - fuzzy_minutes);
     }
   }
 
 
   if (fuzzy_minutes == 0 && !(fuzzy_hours == 0 || fuzzy_hours == 12)) {
-    remaining -= append_string(words, remaining, " ");
+    //remaining -= append_string(words, remaining, " ");
     remaining -= append_string(words, remaining, STR_OH_CLOCK);
   }
 }

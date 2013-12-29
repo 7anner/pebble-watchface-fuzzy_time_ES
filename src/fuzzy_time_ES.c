@@ -5,9 +5,9 @@
 
 #define MY_UUID { 0x86, 0xF3, 0xCD, 0xE4, 0xB6, 0x31, 0x41, 0xFE, 0x80, 0xC4, 0xAE, 0x95, 0xF2, 0x60, 0xAD, 0x59 }
 PBL_APP_INFO(MY_UUID,
-             "Fuzzy Time ES",
+             "Fuzzy Time ES mod",
              "Pebble Technology and knopfler19",
-             1, 0, /* App version */
+             1, 1, /* App version */
              DEFAULT_MENU_ICON,
              APP_INFO_WATCH_FACE);
 
